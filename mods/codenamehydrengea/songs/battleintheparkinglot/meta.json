@@ -1,0 +1,15 @@
+{
+	"customValues": {},
+	"color": "#C2F617",
+	"opponentModeAllowed": false,
+	"icon": "face",
+	"difficulties": [
+		"hardcore"
+	],
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Battle In The Parking Lot",
+	"beatsPerMeasure": 4,
+	"needsVoices": true,
+	"bpm": 176
+}

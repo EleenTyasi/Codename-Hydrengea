@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-stage>
+<stage folder="stages/nightmare/" name="nightmare">
+	<sprite x="373.358010209034" sprite="nmbstage" y="158.088526067699" type="none" scalex="1.29168594547581" scaley="1.22584075152528" name="bg"/>
+	<sprite x="369.994422711641" sprite="nmbbase" y="1142.14581037373" type="none" scalex="1.28905814274346" name="platform"/>
+	<girlfriend x="981.847865662073" y="-608.084792552815"/>
+	<dad x="1024.962329583" y="555.285153928106"/>
+	<boyfriend x="1886.05957996209" y="575.438086913648"/>
+</stage>

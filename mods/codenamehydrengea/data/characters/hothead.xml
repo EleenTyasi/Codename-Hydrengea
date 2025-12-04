@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character sprite="HotHead" scale="0.5" color="#101010">
+	<anim name="idle" anim="HotHead Idle" x="609" y="39"/>
+	<anim name="singDOWN" anim="HotHead Down" x="588" y="36"/>
+	<anim name="singRIGHT" anim="HotHead Right" x="694" y="36"/>
+	<anim name="singLEFT" anim="HotHead Left" x="604" y="40"/>
+	<anim name="singUP" anim="HotHead Up" x="612" y="40"/>
+</character>

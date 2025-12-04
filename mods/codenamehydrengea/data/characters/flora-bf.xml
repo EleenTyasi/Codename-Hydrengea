@@ -1,0 +1,15 @@
+<!DOCTYPE codename-engine-character>
+<character sprite="BOYFRIENDfurry" scale="0.8" flipX="true" isPlayer="true" icon="flora-bf">
+	<anim name="idle" anim="BF idle dance" x="-107.5" y="-365"/>
+	<anim name="singDOWN" anim="BF NOTE DOWN" x="-127.5" y="-421.25"/>
+	<anim name="singRIGHT" anim="BF NOTE RIGHT" x="-147.5" y="-368.75"/>
+	<anim name="singLEFT" anim="BF NOTE LEFT" x="-100" y="-371.25"/>
+	<anim name="singUP" anim="BF NOTE UP" x="-150" y="-338.75"/>
+	<anim name="BF dies" anim="BF dies" x="351.25" y="-92.5"/>
+	<anim name="BF Dead Loop" anim="BF Dead Loop"/>
+	<anim name="BF Dead confirm" anim="BF Dead confirm"/>
+	<anim name="BF NOTE UP MISS" anim="BF NOTE UP MISS" x="-145" y="-331.25"/>
+	<anim name="BF NOTE DOWN MISS" anim="BF NOTE DOWN MISS" x="-130" y="-388.75"/>
+	<anim name="BF NOTE LEFT MISS" anim="BF NOTE LEFT MISS" x="-105" y="-343.75"/>
+	<anim name="BF NOTE RIGHT MISS" anim="BF NOTE RIGHT MISS" x="-132.5" y="-338.75"/>
+</character>

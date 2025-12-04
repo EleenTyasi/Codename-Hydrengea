@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character sprite="furry2" scale="0.5" color="#000000">
+	<anim name="idle" anim="Idle" x="-8" y="-200"/>
+	<anim name="singDOWN" anim="Down" x="-20" y="-260"/>
+	<anim name="singRIGHT" anim="Right" x="-48" y="-206"/>
+	<anim name="singLEFT" anim="Left" x="22" y="-208"/>
+	<anim name="singUP" anim="Up" x="-18" y="-124"/>
+</character>

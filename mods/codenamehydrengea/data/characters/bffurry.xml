@@ -1,0 +1,12 @@
+<!DOCTYPE codename-engine-character>
+<character y="350" sprite="BOYFRIENDfurry" flipX="true" isPlayer="true" color="#30B0D1">
+	<anim name="idle" anim="BF idle dance" x="-5"/>
+	<anim name="singLEFT" anim="BF NOTE LEFT0" x="5" y="-6"/>
+	<anim name="singDOWN" anim="BF NOTE DOWN0" x="-20" y="-51"/>
+	<anim name="singUP" anim="BF NOTE UP0" x="-46" y="27"/>
+	<anim name="singRIGHT" anim="BF NOTE RIGHT0" x="-48" y="-7"/>
+	<anim name="singLEFTmiss" anim="BF NOTE LEFT MISS" x="7" y="19"/>
+	<anim name="singDOWNmiss" anim="BF NOTE DOWN MISS" x="-15" y="-19"/>
+	<anim name="singUPmiss" anim="BF NOTE UP MISS" x="-46" y="27"/>
+	<anim name="singRIGHTmiss" anim="BF NOTE RIGHT MISS" x="-44" y="22"/>
+</character>

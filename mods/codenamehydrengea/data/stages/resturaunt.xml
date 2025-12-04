@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-stage>
+<stage startCamPosX="1000" startCamPosY="600" folder="stages/resturaunt/" zoom="0.9" name="stage">
+	<sprite x="317.03892777882" scroll="0.9" sprite="wbback" y="30.673945507078" scalex="1.43948650636247" scaley="1.11672873848159" name="bg"/>
+	<sprite x="320.87316944511" scroll="0.9" sprite="wbfront" y="1349.1510807494" scalex="1.44100886853674" scaley="1.02573023994783" name="stageFront"/>
+	<girlfriend x="1457.83174465505" y="861.619816267681"/>
+	<dad x="1056.23449199849" y="859.043056345807"/>
+	<boyfriend x="2077.63651241296" angle="0.484603500515377" y="894.243471701453"/>
+</stage>

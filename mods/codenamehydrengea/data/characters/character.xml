@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character sprite="bonniemad" icon="bonnie-mad" color="#009A54">
+	<anim name="idle" anim="bonnie_idle" x="18" y="-142"/>
+	<anim name="singDOWN" anim="bonnie_down" x="12" y="-146"/>
+	<anim name="singRIGHT" anim="bonnie_right" x="-4" y="-112"/>
+	<anim name="singLEFT" anim="bonnie_left" x="24" y="-142"/>
+	<anim name="singUP" anim="bonnie_up" x="16" y="-150"/>
+</character>

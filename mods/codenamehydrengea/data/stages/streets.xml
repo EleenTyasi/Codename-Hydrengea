@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-stage>
+<stage folder="stages/streets/" name="streets">
+	<sprite x="125.56150542925" sprite="bitpstage" y="55.1575487508643" type="none" scalex="1.0980949261166" scaley="1.07879649821552" name="bg"/>
+	<sprite x="118.270274549019" sprite="bitpstagebase" y="1239.23818550587" type="none" scalex="1.10513052431701" name="platform"/>
+	<girlfriend x="988.702298221102" y="713.311809377906"/>
+	<dad x="485.732700936911" y="646.012533423792"/>
+	<boyfriend x="1708.95609814782" y="601.813070674702"/>
+</stage>
