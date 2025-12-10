@@ -1,15 +1,18 @@
 {
 	"customValues": {},
-	"color": "#C2F617",
+	"color": "#FFFFFF",
 	"opponentModeAllowed": false,
 	"icon": "bonnie",
 	"difficulties": [
-		"hardcore"
+		"easy",
+		"normal",
+		"hard",
+		"hellsider"
 	],
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
-	"displayName": "Battle In The Parking Lot",
-	"beatsPerMeasure": 4,
+	"displayName": "Peppers and Punches",
 	"needsVoices": true,
-	"bpm": 176
+	"beatsPerMeasure": 4,
+	"bpm": 210
 }

@@ -1,0 +1,17 @@
+{
+	"opponentModeAllowed": false,
+	"icon": "hothead",
+	"difficulties": [
+		"easy",
+		"normal",
+		"hard",
+		"hellsider"
+	],
+	"color": "#A48A8A",
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Flash Fire",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 170
+}

@@ -1,0 +1,18 @@
+{
+	"customValues": {},
+	"color": "#FFFFFF",
+	"opponentModeAllowed": false,
+	"icon": "bonniemad",
+	"difficulties": [
+		"easy",
+		"normal",
+		"hard",
+		"hellsider"
+	],
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Spiced Showdown",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 280
+}

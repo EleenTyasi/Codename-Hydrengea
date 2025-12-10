@@ -1,0 +1,18 @@
+{
+	"customValues": {},
+	"color": "#C3C3C3",
+	"opponentModeAllowed": false,
+	"icon": "hothead-bored",
+	"difficulties": [
+		"easy",
+		"normal",
+		"hard",
+		"hellsider"
+	],
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Warm Up",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 110
+}
