@@ -10,6 +10,7 @@ function getDifficultyIndex():Int {
 }
 
 function onStartCountdown() {
+
    // EggRoll = FlxG.random.int(0, 100);
     var i = getDifficultyIndex();
     pressure = difficultyPressures[i];
@@ -17,6 +18,10 @@ function onStartCountdown() {
 }
 
 function onPlayerMiss() {
+    if (!Options.ghostTapping && FlxG.keys.justPressed.ANY){
+        trace("Aw, hell nah ghost tapping is off");
+        gameOver(); // turbo-fuck you   
+    }
     if (pressure >= 0.01) {
         var i = getDifficultyIndex();
 // yaaawn, its easy mode.
@@ -41,10 +46,10 @@ function onPlayerMiss() {
             trace("Pressure cap hit for this difficulty, ignoring miss...");
         }
 // Oh, no. You poor bastard, you're on hellsider.
-        if (i == 3 && pressure < 0.65)
+        if (i == 3 && pressure < 0.69)
             pressure += missIncrements[i];
-        else if (i == 3 && pressure > 0.65) {
-            pressure = 0.65;
+        else if (i == 3 && pressure > 0.69) {
+            pressure = 0.69;
             trace("Pressure cap hit for this difficulty, ignoring miss...");
         }
 

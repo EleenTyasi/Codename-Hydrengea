@@ -1,13 +1,17 @@
-var pressure:Float = 0.01;
-var EggRoll:Int = 0;
 
+var pressure:Float = 0.01;
+var pressureCount:Float = (pressure * 10000);
+var EggRoll:Int = 0;
+var bar:FlxBar;
 var difficulties = ["hardcore"];
 var difficultyPressures = [0.08];
 var missIncrements = [0.02];
 
+
 function getDifficultyIndex():Int {
     return difficulties.indexOf(PlayState.difficulty);
 }
+
 
 function onStartCountdown() {
    // EggRoll = FlxG.random.int(0, 100);
