@@ -1,0 +1,9 @@
+<controls>
+    <category name="Five Key">
+        <control name="5k0" saveName="control_5k0" menuName="LEFT" keyP1="A" keyP2="" menuIcon="game/notes/default" menuAnim="purple0"/>
+        <control name="5k1" saveName="control_5k1" menuName="UP" keyP1="S" keyP2="" menuIcon="game/notes/default" menuAnim="green0"/>
+        <control name="5k2" saveName="control_5k2" menuName="MIDDLE" keyP1="SPACE" keyP2="" menuIcon="game/notes/default" menuAnim="green0"/>
+        <control name="5k3" saveName="control_5k3" menuName="RIGHT" keyP1="K" keyP2="LEFT" menuIcon="game/notes/default" menuAnim="red0"/>
+        <control name="5k4" saveName="control_5k4" menuName="DOWN" keyP1="L" keyP2="DOWN" menuIcon="game/notes/default" menuAnim="blue0"/>
+    </category>
+</controls>

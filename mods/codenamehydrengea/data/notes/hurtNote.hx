@@ -8,7 +8,8 @@ var hitNoteDrainPenalty:Float = 0.33;
     {
         // set it as da propah note, ya git
         e.noteSprite = "game/notes/types/hurtNote";
-        e.note.frameOffset.set(61,5);
+        e.note.frameOffset.set(50,3);
+        e.sustain.frameOffset.set(1,5); // am i smoking crack? yes, deal with it fuckass
     }
 }
 

@@ -5,7 +5,8 @@
 		"easy",
 		"normal",
 		"hard",
-		"hellsider"
+		"hellsider-f",
+		"hellsider-e"
 	],
 	"color": "#A48A8A",
 	"coopAllowed": false,

@@ -1,19 +1,15 @@
 {
 	"customValues": {},
-	"color": "#FFFFFF",
+	"color": "#9271FD",
 	"opponentModeAllowed": false,
-	"icon": "bonnie",
 	"difficulties": [
-		"easy",
-		"normal",
-		"hard",
-		"hellsider",
-		"hellsider-f"
+		"BlazingHot"
 	],
+	"icon": "nightmarebon",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
-	"displayName": "Peppers and Punches",
+	"displayName": "crystalinespice",
 	"needsVoices": true,
 	"beatsPerMeasure": 4,
-	"bpm": 210
+	"bpm": 170
 }

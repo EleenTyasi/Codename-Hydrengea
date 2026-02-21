@@ -1,19 +1,17 @@
 {
-	"customValues": {},
-	"color": "#FFFFFF",
 	"opponentModeAllowed": false,
-	"icon": "bonnie",
+	"icon": "hothead",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard",
-		"hellsider",
-		"hellsider-f"
+		"hellsider"
 	],
+	"color": "#FFFFFF",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
-	"displayName": "Peppers and Punches",
+	"displayName": "Everburning",
 	"needsVoices": true,
 	"beatsPerMeasure": 4,
-	"bpm": 210
+	"bpm": 185
 }

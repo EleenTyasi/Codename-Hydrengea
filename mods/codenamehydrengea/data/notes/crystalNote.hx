@@ -1,6 +1,6 @@
 
 var hitNoteDrainPenalty:Float = 0.011;
-var missNoteDrainPenalty:Float = 0.22;
+var missNoteDrainPenalty:Float = 0.44;
 
 
   function onNoteCreation(e)
@@ -12,7 +12,8 @@ var missNoteDrainPenalty:Float = 0.22;
          // I'm going to send ya to da scrapheap, ya git.
         // set it as da propah note, ya git
         e.noteSprite = "game/notes/types/crystalNote";
-        e.note.frameOffset.set(61,5); // this da perfect offset for da conversion of da krumpin' notes
+        e.note.frameOffset.set(50,3); // this da perfect offset for da conversion of da krumpin' notes
+        e.sustain.frameOffset.set(1,5); // am i smoking crack?
     }
 }
 

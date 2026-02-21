@@ -1,9 +1,9 @@
 var pressure:Float = 0.01;
 var EggRoll:Int = 0;
 
-var difficulties = ["easy", "normal", "hard", "hellsider", "hellsider-f"];
-var difficultyPressures = [0.01, 0.02, 0.03, 0.04, 0.04];
-var missIncrements = [0.01, 0.01, 0.02, 0.04, 0.04];
+var difficulties = ["easy", "normal", "hard", "hellsider"];
+var difficultyPressures = [0.02, 0.04, 0.06, 0.08];
+var missIncrements = [0.01, 0.01, 0.02, 0.04];
 
 function getDifficultyIndex():Int {
     return difficulties.indexOf(PlayState.difficulty);
@@ -43,14 +43,7 @@ function onPlayerMiss() {
 // Oh, no. You poor bastard, you're on hellsider.
         if (i == 3 && pressure < 0.65)
             pressure += missIncrements[i];
-        else if (i == 3 && pressure > 0.65) {
-            pressure = 0.65;
-            trace("Pressure cap hit for this difficulty, ignoring miss...");
-        }
-// Hellsider-F, or hellsider foomy chart
-        if (i == 4 && pressure < 0.65)
-            pressure += missIncrements[i];
-        else if (i == 3 && pressure > 0.65) {
+        else if (i == 3 && pressure > 0.80) {
             pressure = 0.65;
             trace("Pressure cap hit for this difficulty, ignoring miss...");
         }

@@ -1,9 +1,9 @@
 var pressure:Float = 0.01;
 var EggRoll:Int = 0;
 
-var difficulties = ["easy", "normal", "hard", "hellsider"];
-var difficultyPressures = [0.01, 0.02, 0.03, 0.04];
-var missIncrements = [0.01, 0.01, 0.02, 0.04];
+var difficulties = ["easy", "normal", "hard", "hellsider-f", "hellsider-e"];
+var difficultyPressures = [0.01, 0.02, 0.03, 0.04, 0.04];
+var missIncrements = [0.01, 0.01, 0.02, 0.04, 0.04];
 
 function getDifficultyIndex():Int {
     return difficulties.indexOf(PlayState.difficulty);
@@ -18,10 +18,6 @@ function onStartCountdown() {
 }
 
 function onPlayerMiss() {
-    if (!Options.ghostTapping && FlxG.keys.justPressed.ANY){
-        trace("Aw, hell nah ghost tapping is off");
-        gameOver(); // turbo-fuck you   
-    }
     if (pressure >= 0.01) {
         var i = getDifficultyIndex();
 // yaaawn, its easy mode.
@@ -52,7 +48,13 @@ function onPlayerMiss() {
             pressure = 0.69;
             trace("Pressure cap hit for this difficulty, ignoring miss...");
         }
-
+// Oh, no. You poor bastard, you're on hellsider.
+        if (i == 4 && pressure < 0.69)
+            pressure += missIncrements[i];
+        else if (i == 4 && pressure > 0.69) {
+            pressure = 0.69;
+            trace("Pressure cap hit for this difficulty, ignoring miss...");
+        }
     }
 }
 

@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
+<character sprite="nmbon" icon="nmbon" color="#8cd7ff" camx="-85" camy="130" holdTime="6" scale="0.8">
+	<anim name="idle" anim="Idle" x="490" y="-162.5"/>
+	<anim name="singLEFT" anim="Left" x="62.5" y="-162.5"/>
+	<anim name="singDOWN" anim="Down" x="50" y="-175"/>
+	<anim name="singUP" anim="Up" x="62.5" y="-137.5"/>
+	<anim name="singRIGHT" anim="Right" x="0" y="-162.5"/>
+</character>

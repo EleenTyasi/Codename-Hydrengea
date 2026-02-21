@@ -1,7 +1,6 @@
 <!DOCTYPE codename-engine-character>
-<!-- Made with WizardMantis's Character Converter on https://codename-engine.com/ -->
-<character sprite="gf-flora" icon="face" color="#a1a1a1" holdTime="5" scale="0.9">
-	<anim name="combobreak" anim="ComboBreak" x="1224.4444444444443" y="463.3333333333333"/>
-	<anim name="idle" anim="Idle" x="1223.3333333333333" y="465.55555555555554" fps="20" loop="true"/>
-	<anim name="sad" anim="ComboBreak" x="1222.2222222222222" y="467.77777777777777"/>
+<character scale="0.9" camx="-775" camy="-320" icon="face" color="#A1A1A1" holdTime="5">
+	<anim name="combobreak" anim="ComboBreak" x="1224.44" y="463.33"/>
+	<anim name="idle" anim="Idle" x="1223.33" y="465.56" fps="20" loop="true"/>
+	<anim name="sad" anim="ComboBreak" x="1222.22" y="467.78"/>
 </character>
