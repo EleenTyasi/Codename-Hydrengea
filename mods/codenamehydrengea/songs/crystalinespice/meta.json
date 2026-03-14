@@ -1,0 +1,15 @@
+{
+	"customValues": {},
+	"color": "#81DCBE",
+	"opponentModeAllowed": false,
+	"difficulties": [
+		"BlazingHot"
+	],
+	"icon": "nmbon",
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "crystalinespice",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 170
+}

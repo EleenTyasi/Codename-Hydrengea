@@ -6,4 +6,12 @@
         <control name="5k3" saveName="control_5k3" menuName="RIGHT" keyP1="K" keyP2="LEFT" menuIcon="game/notes/default" menuAnim="red0"/>
         <control name="5k4" saveName="control_5k4" menuName="DOWN" keyP1="L" keyP2="DOWN" menuIcon="game/notes/default" menuAnim="blue0"/>
     </category>
+    <category name= "Six Key">
+        <control name="6k0" saveName="control_6k0" menuName="RIGHT" keyP1="S" keyP2="" menuIcon="game/notes/default" menuAnim="purple0"/>
+        <control name="6k1" saveName="control_6k1" menuName="DOWN" keyP1="D" keyP2="" menuIcon="game/notes/default" menuAnim="blue0"/>
+        <control name="6k2" saveName="control_6k2" menuName="LEFT" keyP1="F" keyP2="" menuIcon="game/notes/default" menuAnim="red0"/>
+        <control name="6k3" saveName="control_6k3" menuName="RIGHT TWO" keyP1="J" keyP2="" menuIcon="game/notes/default" menuAnim="purple0"/>
+        <control name="6k4" saveName="control_6k4" menuName="UP" keyP1="K" keyP2="" menuIcon="game/notes/default" menuAnim="green0"/>
+        <control name="6k5" saveName="control_6k5" menuName="LEFT TWO" keyP1="L" keyP2="" menuIcon="game/notes/default" menuAnim="red0"/>
+    </category>
 </controls>

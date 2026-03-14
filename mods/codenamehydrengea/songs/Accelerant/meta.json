@@ -1,15 +1,14 @@
 {
-	"customValues": {},
-	"color": "#9271FD",
 	"opponentModeAllowed": false,
+	"icon": "Bonnie",
 	"difficulties": [
-		"BlazingHot"
+		"UltraFucked"
 	],
-	"icon": "nightmarebon",
+	"color": "#CD4040",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
-	"displayName": "crystalinespice",
+	"displayName": "Acellerant (Redux)",
 	"needsVoices": true,
 	"beatsPerMeasure": 4,
-	"bpm": 170
+	"bpm": 164
 }
