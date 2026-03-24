@@ -25,7 +25,7 @@ function onPlayerHit(e)
     {
         // Make sure da git can pay da tax.
         if (health >= 0.5) {
-            health -= hitNoteDrainPenalty;
+            health = health - hitNoteDrainPenalty;
             trace("Crystal Note Hit Penalty Success");
         }
         // OI! Don't kill da git if he can't! He hit the note, ya git!
@@ -41,7 +41,7 @@ function onPlayerMiss(e)
     if(e.noteType == "crystalNote")
     {
         //krump tha midget! hit him as hard as ye can!
-        health -= missNoteDrainPenalty;
+        health = health - missNoteDrainPenalty;
         trace("Crystal Note Miss Penalty Success");
     }
 }

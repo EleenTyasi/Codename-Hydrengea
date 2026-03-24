@@ -1,3 +1,7 @@
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import flixel.util.FlxColor;
+
 var pressure:Float = 0.01;
 var EggRoll:Int = 0;
 
@@ -5,8 +9,55 @@ var difficulties = ["easy", "normal", "hard", "hellsider-f", "hellsider-e"];
 var difficultyPressures = [0.01, 0.02, 0.03, 0.04, 0.04];
 var missIncrements = [0.01, 0.01, 0.02, 0.04, 0.04];
 
+var maxPressures:Array<Float> = [0.1, 0.2, 0.35, 0.69, 0.69];
+var pressureText:FlxText;
+
+function fmt(v:Float):String {
+    return Std.string(Math.round(v * 100) / 100);
+}
+
 function getDifficultyIndex():Int {
     return difficulties.indexOf(PlayState.difficulty);
+}
+
+function createPressureHUD() {
+    if (pressureText != null) return;
+
+    pressureText = new FlxText(0, 0, 200, "");
+    pressureText.setFormat(null, 16, FlxColor.WHITE, "left");
+    pressureText.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2);
+    pressureText.scrollFactor.set(0, 0);
+    pressureText.cameras = [camHUD];
+    
+    // Position near HP bar, accounting for downscroll
+    if (PlayState.instance.downscroll) {
+        pressureText.y = 640;
+    } else {
+        pressureText.y = FlxG.height - 70;
+    }
+    pressureText.x = 90; // position on the left side
+    
+    add(pressureText);
+    updatePressureText();
+}
+
+function updatePressureText() {
+    if (pressureText == null) return;
+    var i = getDifficultyIndex();
+    var max = maxPressures[i];
+    var percent = Math.floor((pressure / max) * 100);
+    pressureText.text = "Pressure: " + percent + "/100";
+    
+    // Color coding based on pressure threshold
+    if (percent >= 100) {
+        pressureText.color = FlxColor.RED; // at cap
+    } else if (percent >= 67) {
+        pressureText.color = 0xFFFF8800; // orange
+    } else if (percent >= 34) {
+        pressureText.color = FlxColor.YELLOW; // middle
+    } else {
+        pressureText.color = FlxColor.WHITE; // low
+    }
 }
 
 function onStartCountdown() {
@@ -15,6 +66,8 @@ function onStartCountdown() {
     var i = getDifficultyIndex();
     pressure = difficultyPressures[i];
    // if (i == 3 && EggRoll == 69) pressure += 0.65;
+
+    createPressureHUD();
 }
 
 function onPlayerMiss() {
@@ -55,6 +108,8 @@ function onPlayerMiss() {
             pressure = 0.69;
             trace("Pressure cap hit for this difficulty, ignoring miss...");
         }
+
+        updatePressureText();
     }
 }
 
