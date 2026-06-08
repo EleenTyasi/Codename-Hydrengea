@@ -1,6 +1,6 @@
 
 var hitNoteDrainPenalty:Float = 0.11;
-var missNoteDrainPenalty:Float = 2.5;
+
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
@@ -60,7 +60,7 @@ function onPlayerMiss(e)
         //this crystal note...
         // it's not like the one in story/bonnie's normal songs
         // You die if you miss these. Straight up.
-        health = 0;
+        gameOver();
         trace("Your punishment, is death.");
     }
 }

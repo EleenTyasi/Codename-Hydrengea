@@ -1,0 +1,16 @@
+{
+	"customValues": {},
+	"color": "#6D28EE",
+	"opponentModeAllowed": false,
+	"icon": "Ricky",
+	"difficulties": [
+		"Simple",
+		"Canon"
+	],
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Ring Out",
+	"needsVoices": true,
+	"beatsPerMeasure": 4,
+	"bpm": 180
+}

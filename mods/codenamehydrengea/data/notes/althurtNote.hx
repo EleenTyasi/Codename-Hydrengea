@@ -2,10 +2,12 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.text.FlxTextBorderStyle;
-var hitNoteDrainPenalty:Float = 0.44;
-  function onCountdown()
-  {
 
+// This was unused in your hit logic, kept it here in case you want to swap the halving logic for a flat penalty later.
+var hitNoteDrainPenalty:Float = 0.44;
+
+function onCountdown()
+{
     var text = new FlxText();
     text.text = "These hurt notes... they'll halve your HP. Hitting them IS BAD. \nThey'll straight up KILL you if you're at 50% already.";
     text.color = FlxColor.WHITE;
@@ -15,56 +17,60 @@ var hitNoteDrainPenalty:Float = 0.44;
     text.y += 50;
     text.cameras = [camHUD];
     add(text);
-    new FlxTimer().start(3, function(tmr)
-        {remove(text);
-        text.destroy();});
-  }
-  function onNoteCreation(e)
-{
-    // if da note type is da hurty type den...
 
+    new FlxTimer().start(3, function(tmr) {
+        if (text != null) {
+            remove(text);
+            text.destroy();
+        }
+    });
+}
+
+function onNoteCreation(e)
+{
     if(e.noteType == "althurtNote")
     {
-        // set it as da propah note, ya git
         e.noteSprite = "game/notes/types/hurtNote";
-        e.note.frameOffset.set(50,3); 
-        e.sustain.frameOffset.set(1,5); // am i smoking crack? yes, deal with it fuckass
+        // Offsets kept as requested
+        e.note.frameOffset.set(50, 3);
+        e.sustain.frameOffset.set(1, 5);
     }
 }
 
-// when da playah hit da hurty note
 function onPlayerHit(e)
 {
-    //MAKE SURE ITS THA HURTY NOTE YA GIT!
     if(e.noteType == "althurtNote")
     {
         trace("Uh oh, someone hit it.");
 
-        // BF hit it!
-        // check health.
-        if(health <= 0.5) { 
+        // Checking against 1.0 assuming a 2.0 Max Health scale common in FNF engines.
+        // If your engine uses 1.0 as Max, keep this as 0.5.
+        var deathThreshold = 1.0;
+
+        if(health <= deathThreshold) {
             trace("I'm the man that's gonna burn your house down with lemons.");
-            gameOver(); // force game over
+            gameOver();
         } else {
             health = health * 0.5;
             trace("Om nom nom. Tasty health.");
         }
 
-
-        boyfriend.playAnim("miss");
+        if (boyfriend != null) boyfriend.playAnim("miss", true);
         noteMiss(e.note);
     }
 }
 
-// Playah ain't dum! dey skipped da hurty note!
 function onPlayerMiss(e)
 {
-    //AGAIN! MAKE SURE DA NOTE IS HURTY, YA GIT!
     if(e.noteType == "althurtNote")
     {
-        //krump da note, it ain't supposed ta do nuffin' on da miss.
-        e.cancel(true); // KILL IT!
-        e.note.strumLine.deleteNote(e.note); //KRUMP DA SPRITE TOO!
+        // Skip health loss and combo break because skipping these is the goal
+        e.cancel(true);
+        if (e.note != null && e.note.strumLine != null) {
+            e.note.strumLine.deleteNote(e.note);
+        }
     }
 }
-    trace("Halving Note script loaded; if you see this; it's working.");
+
+// Keeping your confirmation trace at the bottom - vital for verifying successful script parsing!
+trace("Halving Note script loaded; if you see this; it's working.");
