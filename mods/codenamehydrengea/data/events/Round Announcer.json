@@ -1,0 +1,14 @@
+{
+    "params": [
+        {
+            "name": "Round Title",
+            "type": "String",
+            "defaultValue": "ROUND 2"
+        },
+        {
+            "name": "Subtext",
+            "type": "String",
+            "defaultValue": "FINAL ROUND!"
+        }
+    ]
+}

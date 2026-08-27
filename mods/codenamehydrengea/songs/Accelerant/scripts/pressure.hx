@@ -1,19 +1,18 @@
-
 import flixel.text.FlxText;
 import flixel.text.FlxTextBorderStyle;
 import flixel.util.FlxColor;
 
 var pressure:Float = 0.01;
-var pressureCount:Float = (pressure * 10000);
 var EggRoll:Int = 0;
 var notesHitCount:Int = 0; // Tracks hits for mercy mechanic
-var mercyDecrement:Float = 0.02; // How much to reduce pressure every 10 hits
-var bar:FlxBar;
-var difficulties = ["hardcore"];
-var difficultyPressures = [0.08];
-var missIncrements = [0.02];
 
-var maxPressures:Array<Float> = [0.65];
+// Shifted to lowercase to match engine standards
+var difficulties = ["ultrafucked"];
+var difficultyPressures = [0.09]; // This is our "minimum" pressure
+var missIncrements = [0.11];
+var maxPressures:Array<Float> = [0.80];
+var mercyDecrement:Float = 0.02; // How much to reduce pressure every 10 hits
+
 var pressureText:FlxText;
 
 function fmt(v:Float):String {
@@ -21,7 +20,7 @@ function fmt(v:Float):String {
 }
 
 function getDifficultyIndex():Int {
-    return difficulties.indexOf(PlayState.difficulty);
+    return difficulties.indexOf(PlayState.difficulty.toLowerCase());
 }
 
 function createPressureHUD() {
@@ -32,25 +31,27 @@ function createPressureHUD() {
     pressureText.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2);
     pressureText.scrollFactor.set(0, 0);
     pressureText.cameras = [camHUD];
-    
+
     if (PlayState.instance.downscroll) {
-        pressureText.y = 10;
+        pressureText.y = 640;
     } else {
-        pressureText.y = FlxG.height - 40;
+        pressureText.y = FlxG.height - 70;
     }
-    pressureText.x = 10;
-    
+    pressureText.x = 90;
+
     add(pressureText);
     updatePressureText();
 }
 
 function updatePressureText() {
     if (pressureText == null) return;
+
     var i = getDifficultyIndex();
-    var max = maxPressures[i];
+    var max = (i != -1) ? maxPressures[i] : 0.80;
+
     var percent = Math.floor((pressure / max) * 100);
     pressureText.text = "Pressure: " + percent + "/100";
-    
+
     if (percent >= 100) {
         pressureText.color = FlxColor.RED;
     } else if (percent >= 67) {
@@ -63,28 +64,31 @@ function updatePressureText() {
 }
 
 function onStartCountdown() {
-   // EggRoll = FlxG.random.int(0, 100);
     var i = getDifficultyIndex();
-    pressure = difficultyPressures[i];
-   // if (i == 3 && EggRoll == 69) pressure += 0.65;
-   
+    if (i != -1) pressure = difficultyPressures[i];
+
     createPressureHUD();
 }
 
 function onPlayerHit(e) {
+    // We don't want "Bad Notes" (Hurt/Crystal) to count toward mercy
+    // Assuming your bad notes have a specific type or you handle them elsewhere
     if (e.noteType == "althurtNote" || e.noteType == "altcrystalNote") return;
 
     notesHitCount++;
 
     if (notesHitCount >= 10) {
-        notesHitCount = 0;
+        notesHitCount = 0; // Reset counter
         var i = getDifficultyIndex();
 
         if (i != -1) {
             var minPressure = difficultyPressures[i];
 
+            // Only reduce if we are above the minimum for this difficulty
             if (pressure > minPressure) {
                 pressure -= mercyDecrement;
+
+                // Clamp to the minimum so it doesn't go below
                 if (pressure < minPressure) pressure = minPressure;
 
                 updatePressureText();
@@ -95,18 +99,22 @@ function onPlayerHit(e) {
 }
 
 function onPlayerMiss(e) {
-    // You miss? Fuck yo' mercy. You lose progress on it.
-    notesHitCount = 0;
+    if (e != null && e.noteType == "althurtNote") return;
 
-    if (pressure >= 0.01) {
-        var i = getDifficultyIndex();
-    //HARDCORE!  KRUMP ALL Y'ALL
-        if (i == 0 && pressure < 0.65)
+    var i = getDifficultyIndex();
+
+    if (pressure >= 0.001 && i != -1) {
+        var max = maxPressures[i];
+
+        if (pressure < max) {
             pressure += missIncrements[i];
-        else if (i == 0 && pressure > 0.65) {
-            pressure = 0.65;
-            trace("Pressure cap hit for this difficulty, ignoring miss...");
+            if (pressure > max) pressure = max;
+        } else {
+            trace("Pressure cap hit: " + difficulties[i]);
         }
+
+        // You miss? Fuck yo' mercy. You lose progress on it.
+         notesHitCount = 0;
 
         updatePressureText();
     }

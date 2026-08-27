@@ -1,0 +1,29 @@
+{
+    "params": [
+        {
+            "name": "Beat Count",
+            "type": "Int(1, 8, 1)",
+            "defaultValue": 3
+        },
+        {
+            "name": "Grace Fraction",
+            "type": "Float(0, 1, 0.05, 2)",
+            "defaultValue": 0.4
+        },
+        {
+            "name": "Pressure Penalty on Fail",
+            "type": "Float(0, 1, 0.01, 2)",
+            "defaultValue": 0.12
+        },
+        {
+            "name": "Screen Shake on Fail?",
+            "type": "Bool",
+            "defaultValue": true
+        },
+        {
+            "name": "Shake Magnitude",
+            "type": "Float(0, 1, 0.01, 2)",
+            "defaultValue": 0.05
+        }
+    ]
+}

@@ -1,4 +1,7 @@
 <controls>
+    <category name="Dodge">
+        <control name="ddg0" saveName="control_dodge0" menuName="DODGE" keyP1="SHIFT" keyP2="" menuIcon="game/notes/default" menuAnim="purple0"/>
+    </category>
     <category name="Five Key">
         <control name="5k0" saveName="control_5k0" menuName="LEFT" keyP1="A" keyP2="" menuIcon="game/notes/default" menuAnim="purple0"/>
         <control name="5k1" saveName="control_5k1" menuName="UP" keyP1="S" keyP2="" menuIcon="game/notes/default" menuAnim="green0"/>

@@ -1,0 +1,14 @@
+{
+    "params": [
+        {
+            "name": "Target Strumline",
+            "type": "StrumLine",
+            "defaultValue": 0
+        },
+        {
+            "name": "Enable Trail",
+            "type": "Bool",
+            "defaultValue": true
+        }
+    ]
+}

@@ -1,4 +1,6 @@
 {
+	"customValues": {},
+	"color": "#A48A8A",
 	"opponentModeAllowed": false,
 	"icon": "hothead",
 	"difficulties": [
@@ -8,7 +10,6 @@
 		"hellsider-f",
 		"hellsider-e"
 	],
-	"color": "#A48A8A",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
 	"displayName": "Flash Fire",

@@ -1,4 +1,3 @@
-
 var hitNoteDrainPenalty:Float = 0.011;
 var missNoteDrainPenalty:Float = 0.44;
 

@@ -3,74 +3,132 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.text.FlxTextBorderStyle;
 
-// This was unused in your hit logic, kept it here in case you want to swap the halving logic for a flat penalty later.
-var hitNoteDrainPenalty:Float = 0.44;
+var strikesText:FlxText;
+var strikes:Int = 0;
+var nonHurtHits:Int = 0;
 
-function onCountdown()
-{
-    var text = new FlxText();
-    text.text = "These hurt notes... they'll halve your HP. Hitting them IS BAD. \nThey'll straight up KILL you if you're at 50% already.";
-    text.color = FlxColor.WHITE;
-    text.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2);
-    text.size = 16;
-    text.screenCenter();
-    text.y += 50;
-    text.cameras = [camHUD];
-    add(text);
-
-    new FlxTimer().start(3, function(tmr) {
-        if (text != null) {
-            remove(text);
-            text.destroy();
-        }
-    });
+function postCreate() {
+	createStrikesHUD();
 }
 
-function onNoteCreation(e)
-{
-    if(e.noteType == "althurtNote")
-    {
-        e.noteSprite = "game/notes/types/hurtNote";
-        // Offsets kept as requested
-        e.note.frameOffset.set(50, 3);
-        e.sustain.frameOffset.set(1, 5);
-    }
+function onCountdown() {
+	createStrikesHUD();
+
+	var text = new FlxText();
+	text.text = "These hurt notes act like strikes... Hitting 3 will kill you.\nEvery 30 normal hits removes 1 strike.";
+	text.color = FlxColor.WHITE;
+	text.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2);
+	text.size = 16;
+	text.screenCenter();
+	text.y += 50;
+	text.cameras = [camHUD];
+	add(text);
+
+	new FlxTimer().start(3, function(tmr) {
+		if (text != null) {
+			remove(text);
+			text.destroy();
+		}
+	});
 }
 
-function onPlayerHit(e)
-{
-    if(e.noteType == "althurtNote")
-    {
-        trace("Uh oh, someone hit it.");
+function createStrikesHUD() {
+	if (strikesText != null)
+		return;
 
-        // Checking against 1.0 assuming a 2.0 Max Health scale common in FNF engines.
-        // If your engine uses 1.0 as Max, keep this as 0.5.
-        var deathThreshold = 1.0;
+	strikesText = new FlxText(0, 0, 200, "");
+	strikesText.setFormat(null, 16, FlxColor.WHITE, "left");
+	strikesText.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2);
+	strikesText.scrollFactor.set(0, 0);
+	strikesText.cameras = [camHUD];
 
-        if(health <= deathThreshold) {
-            trace("I'm the man that's gonna burn your house down with lemons.");
-            gameOver();
-        } else {
-            health = health * 0.5;
-            trace("Om nom nom. Tasty health.");
-        }
+	if (PlayState.instance != null && PlayState.instance.downscroll) {
+		strikesText.y = 610;
+	} else {
+		strikesText.y = FlxG.height - 100;
+	}
+	strikesText.x = 90;
 
-        if (boyfriend != null) boyfriend.playAnim("miss", true);
-        noteMiss(e.note);
-    }
+	add(strikesText);
+	updateStrikesText();
 }
 
-function onPlayerMiss(e)
-{
-    if(e.noteType == "althurtNote")
-    {
-        // Skip health loss and combo break because skipping these is the goal
-        e.cancel(true);
-        if (e.note != null && e.note.strumLine != null) {
-            e.note.strumLine.deleteNote(e.note);
-        }
-    }
+function updateStrikesText() {
+	if (strikesText == null)
+		return;
+	strikesText.text = "Strikes: " + strikes + "/3";
+
+	if (strikes == 0) {
+		strikesText.color = FlxColor.WHITE;
+	} else if (strikes == 1) {
+		strikesText.color = FlxColor.YELLOW;
+	} else if (strikes == 2) {
+		strikesText.color = 0xFFFF8800; // Orange
+	} else {
+		strikesText.color = FlxColor.RED;
+	}
 }
 
-// Keeping your confirmation trace at the bottom - vital for verifying successful script parsing!
-trace("Halving Note script loaded; if you see this; it's working.");
+function onNoteCreation(e) {
+	if (e.noteType == "althurtNote") {
+		e.noteSprite = "game/notes/types/hurtNote";
+		e.note.frameOffset.set(50, 3);
+		e.sustain.frameOffset.set(1, 5);
+	}
+}
+
+function onPlayerHit(e) {
+	if (e == null)
+		return;
+
+	if (e.noteType == "althurtNote") {
+		trace("Uh oh, someone hit it.");
+		e.preventAnim();
+
+		strikes++;
+		updateStrikesText();
+
+		if (strikes == 1) {
+			// Deal as much damage as a normal hurt note: 0.22
+			health = health - 0.22;
+			trace("1st Strike: normal hurt note damage applied.");
+		} else if (strikes == 2) {
+			// Deal 50% of player's current health in damage (halves current health)
+			health = health * 0.5;
+			trace("2nd Strike: HP halved.");
+		} else if (strikes >= 3) {
+			gameOver();
+			trace("3rd Strike: You're out, fucknugget!");
+		}
+
+		boyfriend.playAnim("miss");
+
+		if (PlayState.instance != null) {
+			PlayState.instance.combo = 0;
+			PlayState.instance.songScore = Math.max(0, PlayState.instance.songScore - 100);
+		}
+	} else if (e.noteType != "hurtNote") {
+		if (strikes > 0) {
+			nonHurtHits++;
+			if (nonHurtHits >= 30) {
+				nonHurtHits = 0;
+				strikes--;
+				updateStrikesText();
+				trace("Strike removed due to 30 non-hurt notes hit!");
+			}
+		} else {
+			nonHurtHits = 0;
+		}
+	}
+}
+
+function onPlayerMiss(e) {
+	if (e.noteType == "althurtNote") {
+		// Skip health loss and combo break because skipping these is the goal
+		e.cancel(true);
+		if (e.note != null && e.note.strumLine != null) {
+			e.note.strumLine.deleteNote(e.note);
+		}
+	}
+}
+trace("Strike-based altHurtNote script loaded; if you see this, it's working.");

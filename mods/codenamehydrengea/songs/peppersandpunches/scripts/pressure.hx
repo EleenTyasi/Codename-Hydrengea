@@ -4,6 +4,8 @@ import flixel.util.FlxColor;
 
 var pressure:Float = 0.01;
 var EggRoll:Int = 0;
+var notesHitCount:Int = 0; // Tracks hits for mercy mechanic
+var mercyDecrement:Float = 0.01; // How much to reduce pressure every 10 hits
 
 var difficulties = ["easy", "normal", "hard", "hellsider", "hellsider-f"];
 var difficultyPressures = [0.01, 0.02, 0.03, 0.04, 0.04];
@@ -67,7 +69,33 @@ function onStartCountdown() {
     createPressureHUD();
 }
 
-function onPlayerMiss() {
+function onPlayerHit(e) {
+    if (e.noteType == "althurtNote" || e.noteType == "altcrystalNote") return;
+
+    notesHitCount++;
+
+    if (notesHitCount >= 10) {
+        notesHitCount = 0;
+        var i = getDifficultyIndex();
+
+        if (i != -1) {
+            var minPressure = difficultyPressures[i];
+
+            if (pressure > minPressure) {
+                pressure -= mercyDecrement;
+                if (pressure < minPressure) pressure = minPressure;
+
+                updatePressureText();
+                trace("Mercy applied! Pressure reduced.");
+            }
+        }
+    }
+}
+
+function onPlayerMiss(e) {
+    // You miss? Fuck yo' mercy. You lose progress on it.
+    notesHitCount = 0;
+
     if (pressure >= 0.01) {
         var i = getDifficultyIndex();
 // yaaawn, its easy mode.
@@ -110,6 +138,23 @@ function onPlayerMiss() {
     }
 }
 
+function onEvent(event) {
+	if (event.event.name == "Pressure Spike") {
+		var params = event.event.params;
+		var amount:Float = 0.08;
+		if (params != null && params.length > 0 && params[0] != null) {
+			amount = Std.parseFloat(Std.string(params[0]));
+			if (Math.isNaN(amount)) amount = 0.08;
+		}
+		pressure += amount;
+		var i = getDifficultyIndex();
+		if (i != -1 && pressure > maxPressures[i]) pressure = maxPressures[i];
+		updatePressureText();
+		trace("=== PRESSURE SPIKE | +" + amount + " | Now: " + pressure + " ===");
+	}
+}
+
 function onDadHit() {
-    if (health > 0.45) health -= pressure * 0.45;
+	if (health > 0.45)
+		health -= pressure * 0.45;
 }
